@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body style="background-color:powderblue;">
+
+
+ <div class="contentcontainer med left" style="margin-left: 500px;">
+	<h1>Rain Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+     
+  <form action="{{ url_for('predict')}}"method="post">
+    <img src="{{url_for('static', filename = 'img.jpeg' )}}",alt="Image" width="400" ,height="400"><br>
+    <label for="Location" accesskey="p">Location</label>
+    <select name="Location" id="Location">
+	       <option>Adelaide
+	       <option>Albany 
+         <option>Albury
+         <option>AliceSprings
+         <option>BadgerysCreek
+         <option>Ballarat
+         <option>Bendigo
+         <option>Brisbane
+         <option>Cairns
+         <option>Canberra
+         <option>Cobar
+         <option>CoffsHarbour
+	       <option>Dartmoor 
+         <option>Darwin
+         <option>GoldCoast
+         <option>Hobart
+         <option>Katherine
+         <option>Launceston
+         <option>Melbourne
+         <option>MelbourneAirport
+         <option>Mildura
+         <option>Moree
+         <option>MountGambier
+         <option>MountGinini
+         <option>Newcastle
+         <option>Nhil
+         <option>NorahHead
+         <option>NorfolkIsland
+         <option>Nuriootpa
+         <option>PearceRAAF
+         <option>Penrith
+         <option>Perth
+         <option>PerthAirport
+         <option>Portland
+         <option>Richmond
+         <option>Sale
+         <option>SalmonGums
+         <option>Sydney
+         <option>SydneyAirport
+         <option>Townsville
+         <option>Tuggeranong
+         <option>Uluru
+         <option>WaggaWagga
+         <option>Walpole
+         <option>Watsonia
+         <option>Williamtown
+         <option>Witchcliffe
+	       <option>Wollongong 
+         <option>Woomera
+      </select><br><br>
+    <label for="MinTemp">MinTemperature:</label>
+    <input type="number"  step = 0.01 min= "1" name="MinTemp"  placeholder="MinTemp" required="required" size="200"><br><br>
+    <label for="Rainfall">Rainfall:</label>
+    <input type="number"  step= 0.01 name="Rainfall" placeholder="Rainfall" required="required" size="200"><br><br>
+    <label for="WindGustSpeed">WindGustSpeed:</label>
+    <input type="number" step=0.01  name="WindGustSpeed" placeholder="WindGustSpeed" required="required" size="200"><br><br>
+    <label for="WindSpeed9am">WindSpeed9am:</label>
+    <input type="number"  step=0.01 name="WindSpeed9am" placeholder="WindSpeed9am" required="required" size="200"><br><br>
+    <label for="WindSpeed3pm">WindSpeed3pm:</label>
+    <input type="number"  step=0.01 name="WindSpeed3pm" placeholder="WindSpeed3pm" required="required" size="200"><br><br>
+    <label for="Humidity9am">Humidity9am:</label>
+    <input type="number" step=0.01 name="Humidity9am"  placeholder="Humidity9am" required="required" size="200"><br><br>
+    <label for="Humidity3pm">WindSpeed3pm:</label>
+    <input type="number" step=0.01 name="Humidity3pm" placeholder="Humidity3pm" required="required" size="200"><br><br>
+    <label for="Pressure3pm">Pressure3pm:</label>
+    <input type="number" step=0.01  name="Pressure3pm" placeholder="Pressure3pm" required="required" size="200"><br><br>
+    <label for="RainToday" accesskey="RainToday">RainToday</label>
+    <select name="RainToday" id="RainToday">
+	       <option>Yes
+	       <option>No     
+    </select><br><br>
+    <label for="WindGustDir" accesskey="WindGustDir">WindGustDir</label>
+    <select name="WindGustDir" id="WindGustDir">
+	       <option>E
+	       <option>ENE 
+         <option>ESE
+         <option>N
+         <option>NE
+         <option>NNE
+         <option>NNW
+         <option>NW
+         <option>S
+         <option>SE
+         <option>SSE
+         <option>SSW
+         <option>SW
+         <option>W
+         <option>WNW
+         <option>WSW
+    </select><br><br>
+    <label for="WindDir3pm" accesskey="WindDir3pm">WindDir3pm</label>
+    <select name="WindDir3pm" id="WindDir3pm">
+	       <option>E
+	       <option>ENE 
+         <option>ESE
+         <option>N
+         <option>NE
+         <option>NNE
+         <option>NNW
+         <option>NW
+         <option>S
+         <option>SE
+         <option>SSE
+         <option>SSW
+         <option>SW
+         <option>W
+         <option>WNW
+         <option>WSW
+    </select><br><br>
+    <label for="WindDir9am" accesskey="WindDir9am">WindDir9am</label>
+    <select name="WindDir9am" id="WindDir9am">
+	       <option>E
+	       <option>ENE 
+         <option>ESE
+         <option>N
+         <option>NE
+         <option>NNE
+         <option>NNW
+         <option>NW
+         <option>S
+         <option>SE
+         <option>SSE
+         <option>SSW
+         <option>SW
+         <option>W
+         <option>WNW
+         <option>WSW
+    </select><br><br>
+    
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text  }} 
+
+ </div>
+
+
+</body>
+</html>
