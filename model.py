@@ -8,8 +8,8 @@ import pickle
 app = Flask(__name__)
 # load the pickel model
 # model = pickle.load(open("Randomforest_rain_prediction.pkl", "rb"))
-with open('Randomforest_rain_prediction.pkl') as model:
-    print pickle.load(model)
+with open('Randomforest_rain_prediction.pkl') as mod:
+       model = pickle.load(mod)
 
 @app.route('/')
 def home():
