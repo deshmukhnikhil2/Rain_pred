@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 app = Flask(__name__)
 # load the pickel model
-model = pickle.load(open("Randomforest_rain_prediction.pkl","rb"))
+model = pickle.load(open(r"Randomforest_rain_prediction.pkl","rb"))
 # with open('Randomforest_rain_prediction.pkl') as mod:
 #        model = pickle.load(mod)
 
